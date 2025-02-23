@@ -11,3 +11,20 @@ body{
     background-color: #0b101b;
     color: white;
 }
+.container{
+    max-width: 990px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 2 rem;
+}
+.heading_text{
+    text-align: center;
+}
+.heading{
+    font-size: clamp(2.1rem, 7vw, 3rem);
+    line-height: 1.2;
+}

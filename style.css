@@ -40,10 +40,27 @@ body{
     max-width: 600px;
     margin: 0 auto;
 }
-.url_shortener_container{
+.url_shortner_container{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.input_container{
+    display: grid;
+    grid-template-columns: 15px auto 150px;
+    border: 2px solid #353c4a;
+    padding: 10px;
+    width: 80%;
+    border-radius: 10px;
+    color: white;
+}
+.input_container input{
+    outline: none;
+    border: none;
+    background: transparent;
+    color: white;
+    width: 100%;
+    padding: 10px;
 }

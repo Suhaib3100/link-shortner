@@ -5,19 +5,38 @@ export default function Home() {
 const [loading, setLoading] = useState(false);
 const [shortUrl, setShortUrl] = useState("");
 const [inputUrl, setInputUrl] = useState("");
+const [customAlias, setCustomAlias] = useState("");
+const [error, setError] = useState("");
 
    const handleShorter = async () => {
-    if(!inputUrl)
+    if(!inputUrl) {
+      setError("Please enter a URL");
       return;
+    }
     
     setLoading(true);
+    setError("");
     try {
-      const apiURL = "https://tinyurl.com/api-create.php?url=" + encodeURIComponent(inputUrl);
-      const response = await fetch(apiURL);
-      const data = await response.text();
-      setShortUrl(data);
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/urls/shorten", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          url: inputUrl,
+          customCode: customAlias || undefined
+        })
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to shorten URL');
+      }
+
+      setShortUrl(data.shortUrl);
     } catch (error) {
-      alert("An error occurred while shortening the URL");
+      setError(error.message || "An error occurred while shortening the URL");
     } finally {
       setLoading(false);
     }
@@ -37,6 +56,18 @@ const [inputUrl, setInputUrl] = useState("");
       value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}
       onKeyPress={(e) => e.key === "Enter" && handleShorter()}
       className="w-full text-gray-600 mt-2 text-center p-2 border rounded-lg"></input>
+
+     <input 
+      type="text" 
+      placeholder="Custom alias (optional)"  
+      value={customAlias} 
+      onChange={(e) => setCustomAlias(e.target.value)}
+      className="w-full text-gray-600 mt-2 text-center p-2 border rounded-lg"
+     />
+
+     {error && (
+       <p className="text-red-500 text-sm mt-2 text-center">{error}</p>
+     )}
 
      <button 
       onClick={handleShorter}

@@ -30,7 +30,7 @@ useEffect(() => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/urls/shorten", {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "https://link-shortner-5hn7.vercel.app/api/urls/shorten", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

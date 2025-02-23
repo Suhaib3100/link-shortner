@@ -27,4 +27,9 @@ body{
 .heading{
     font-size: clamp(2.1rem, 7vw, 3rem);
     line-height: 1.2;
+    background-image: linear-gradient(120deg, #1cdce8, #bb77ed);
+    background-size: 200%;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }

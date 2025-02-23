@@ -52,6 +52,11 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+// Simple route to show server status
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
+
 // Routes will be imported here
 app.use('/api/urls', require('./routes/urls'));
 app.use('/api/auth', require('./routes/auth'));

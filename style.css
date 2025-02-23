@@ -77,6 +77,12 @@ body{
     font-weight: 600;
     padding: 0.7rem 1rem;
 }
+.shortBtn:hover{
+    background-color: rgb(255, 232, 187);
+}
+.shortBtn:active{
+    background-color: rgb(255, 255, 255);
+}
 .result_container{
     border: 2px solid #353c4a;
     width: 80%;

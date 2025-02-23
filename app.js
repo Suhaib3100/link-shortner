@@ -12,12 +12,14 @@ const fetchURL = async () => {
       resultEl.innerHTML = `<span class="shortenedUrl">${data}</span>`;
       resultEl.style.color = "#FFFFFF";
       resultEl.style.fontWeight = "600";
-      resultEl.style.justifyContent = "space-between";
+      resultEl.style.justifyContent = "center";
     })
     .catch((err) => {
       resultEl.innerHTML = "An error Occurred";
     });
 };
+
+shortBtn.addEventListener('click', fetchURL)
 
 inputUrl.addEventListener("keypress", (e) => {
   if (e.key === "ENTER") fetchURL();
@@ -25,5 +27,5 @@ inputUrl.addEventListener("keypress", (e) => {
 
 window.addEventListener("DOMContentLoaded", () => {
   inputUrl.value = "";
-  resultEl.innerHTML = "Shortened Url will appear here";
+  resultEl.innerHTML = "Shortened Url will appear here✨";
 });

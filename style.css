@@ -33,3 +33,17 @@ body{
     -webkit-background-clip: text;
     background-clip: text;
 }
+.desc{
+    margin-top: 1rem;
+    font-size: 0.8em;
+    color: #c9ced5;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.url_shortener_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

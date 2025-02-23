@@ -55,6 +55,7 @@ body{
     width: 80%;
     border-radius: 10px;
     color: white;
+    align-items: center;
 }
 .input_container input{
     outline: none;
@@ -63,4 +64,18 @@ body{
     color: white;
     width: 100%;
     padding: 10px;
+}
+.shortBtn{
+    border: none;
+    outline: none;
+    background: transparent;
+    background-color: wheat;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+}
+.result_container{
+    
 }

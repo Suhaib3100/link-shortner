@@ -3,7 +3,6 @@ const router = express.Router();
 const { Pool } = require('pg');
 const validUrl = require('valid-url');
 const { nanoid } = require('nanoid');
-const winston = require('winston');
 
 const pool = new Pool({
   connectionString: 'postgresql://neondb_owner:npg_FgsZ5NMHBu9W@ep-still-frog-a87tfdip-pooler.eastus2.azure.neon.tech/neondb?sslmode=require'

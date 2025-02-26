@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Home() {
 const [loading, setLoading] = useState(false);
@@ -7,19 +7,6 @@ const [shortUrl, setShortUrl] = useState("");
 const [inputUrl, setInputUrl] = useState("");
 const [customAlias, setCustomAlias] = useState("");
 const [error, setError] = useState("");
-const [serverStatus, setServerStatus] = useState('checking');
-
-useEffect(() => {
-  const checkServerStatus = async () => {
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || 'https://link-shortner-5hn7.vercel.app/api/urls/shorten');
-      setServerStatus('online');
-    } catch (error) {
-      setServerStatus('offline');
-    }
-  };
-  checkServerStatus();
-}, []);
 
    const handleShorter = async () => {
     if(!inputUrl) {
@@ -30,7 +17,7 @@ useEffect(() => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "https://link-shortner-5hn7.vercel.app/api/urls/shorten", {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/urls/shorten", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +72,7 @@ useEffect(() => {
      <button 
       onClick={handleShorter}
       className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-900 transition duration-300" 
-      disabled={loading || serverStatus === 'offline'}
+      disabled={loading}
      >
       {loading ? "shortening..." : "Shorten your Link"}
      </button>
@@ -105,9 +92,6 @@ useEffect(() => {
      )}
 
      <p className="text-sm text-gray-500 text-center mt-4">Made by Suhaib & Tharun </p>
-     <div className={`text-sm text-center mt-2 ${serverStatus === 'online' ? 'text-green-500' : serverStatus === 'offline' ? 'text-red-500' : 'text-yellow-500'}`}>
-       Server Status: {serverStatus === 'online' ? '🟢 Online' : serverStatus === 'offline' ? '🔴 Offline' : '🟡 Checking...'}
-     </div>
     </div>
    </div>
   );
